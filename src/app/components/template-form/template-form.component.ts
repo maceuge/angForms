@@ -5,8 +5,8 @@ import { NgForm } from '@angular/forms';
   selector: 'app-template-form',
   templateUrl: './template-form.component.html',
   styles: [`
-      .ng-invalid .ng-touched:not(form) {
-        border: 3px solid #dc3545;
+      input {
+        outline: none;
       }
   `]
 })
@@ -14,14 +14,29 @@ export class TemplateFormComponent implements OnInit {
   
   outputData: any = {};
 
-  dataForm: NgForm;
-
-  usuario = {
+  usuario: any = {
     nombre: '',
     apellido: '',
     email: '',
-    pass: ''
+    pass: '',
+    pais: 'USR',
+    sexo: 'Hombre'
   };
+
+  paises = [
+    {
+      siglas: 'USR',
+      nombre: 'Rusia'
+    },
+    {
+      siglas: 'ESP',
+      nombre: 'España'
+    },
+    {
+      siglas: 'ARG',
+      nombre: 'Argentina'
+    }
+  ];
 
   constructor() { }
 
@@ -35,7 +50,7 @@ export class TemplateFormComponent implements OnInit {
    // this.outputData = getDataForm.value;
   }
 
-  dafaultData () {
+  dafaultData (dataForm: NgForm) {
    let usuario = {
       nombre: 'Blue',
       apellido: 'Magnum',
@@ -43,10 +58,10 @@ export class TemplateFormComponent implements OnInit {
       pass: '123456'
     };
 
-    this.dataForm.value.nombre = usuario.nombre;
-    this.dataForm.value.apellido = usuario.apellido;
-    this.dataForm.value.email = usuario.email;
-    this.dataForm.value.pass = usuario.pass;
+    dataForm.value.nombre = usuario.nombre;
+    dataForm.value.email = usuario.email;
+    dataForm.value.pass = usuario.pass;
+    dataForm.value.apellido = usuario.apellido;
 
   }
 

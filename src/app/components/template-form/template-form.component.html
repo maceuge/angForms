@@ -3,67 +3,110 @@
         <h3>Template Form <span class="small text-danger"></span></h3>
         <hr class="bg-light">
 
-        <form (ngSubmit)="guardarForm(dataForm)" #dataForm="ngForm" novalidate>
+        <form (ngSubmit)="guardarForm(dataForm)" #dataForm="ngForm" novalidate autocomplete="off">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" id="name" placeholder="Nombre" minlength="5" required>
+                    <!-- <label for="name">Nombre</label> -->
+                    <input type="text" 
+                           class="form-control"
+                           [ngClass]="{'is-invalid': (name?.errors?.required || name?.errors?.minlength) && name.touched, 'is-valid': !name.invalid }" 
+                           name="nombre" 
+                           [(ngModel)]="usuario.nombre" 
+                           #name="ngModel" 
+                           placeholder="Nombre" 
+                           minlength="3" 
+                           required>
+                    <div class="invalid-feedback" *ngIf="name?.errors?.required && name.touched">
+                        Este campo es Requerido
+                    </div>
+                    <div class="invalid-feedback" *ngIf="name?.errors?.minlength && name.touched">
+                        El campo debe tener al menos 3 caracteres
+                    </div>
+                    <div class="valid-feedback" *ngIf="!name?.errors && name.touched">
+                        Campo Validado
+                    </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="surname">Apellido</label>
-                    <input type="text" class="form-control" name="apellido" [(ngModel)]="usuario.apellido" id="surname" placeholder="Apellido">
+                    <!-- <label for="surname">Apellido</label> -->
+                    <input type="text" 
+                           class="form-control"
+                           [ngClass]="{'is-invalid': (surname?.errors?.required || surname?.errors?.minlength) && surname.touched, 'is-valid': !surname.invalid }" 
+                           name="apellido" 
+                           [(ngModel)]="usuario.apellido" 
+                           #surname="ngModel" 
+                           placeholder="Apellido" 
+                           minlength="5"
+                           required>
+
+                        <div class="invalid-feedback" *ngIf="surname?.errors?.required && surname.touched">
+                            Este Campo es Requerido
+                        </div>
+                        <div class="invalid-feedback" *ngIf="surname?.errors?.minlength && surname.touched">
+                            El Campo debe tener al menos 5 caracteres
+                        </div>
+                        <div class="valid-feedback" *ngIf="!surname?.errors && surname.touched">
+                            Campo Validado
+                        </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" name="email" [(ngModel)]="usuario.email" id="inputEmail4" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                <!-- <label for="inputEmail4">Email</label> -->
+                <input type="email" 
+                       class="form-control"
+                       [ngClass]="{'is-invalid': (email?.errors?.required || email?.errors?.pattern) && email.touched, 'is-valid': !email.invalid }" 
+                       name="email" 
+                       [(ngModel)]="usuario.email" 
+                       #email="ngModel" 
+                       placeholder="Email" 
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+                       required>
+
+                <div class="invalid-feedback" *ngIf="email?.errors?.required && email.touched">
+                    Este Campo es Requerido
+                </div>
+                <div class="invalid-feedback" *ngIf="email?.errors?.pattern && email.touched">
+                    El email es invalido
+                </div>
+                <div class="valid-feedback" *ngIf="!email?.errors && email.touched">
+                    Campo Validado
+                </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword4">Contraseña</label>
-                <input type="password" class="form-control" name="pass" [(ngModel)]="usuario.pass" id="inputPassword4" placeholder="Password">
+                <!-- <label for="inputPassword4">Contraseña</label> -->
+                <input type="password" class="form-control" name="pass" [(ngModel)]="usuario.pass" placeholder="Password">
             </div>
 
-            <!--div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
             <div class="form-group">
-                <label for="inputAddress2">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <!-- <label for="">Pais</label> -->
+                <select class="custom-select" [(ngModel)]="usuario.pais" name="pais">
+                    <option selected>Elige un Pais</option>
+                    <option *ngFor="let pais of paises" [value]="pais.siglas"> {{ pais.nombre }} </option>
+                </select>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
+
             <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                Check me out
-              </label>
-                </div>
-            </div-->
-            <button type="submit" class="btn btn-primary center-block mt-2">Ingresar</button>
-            <a type="button" class="btn btn-success center-block mt-2 ml-3">Rellenator</a>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" [(ngModel)]="usuario.sexo" value="Hombre" id="customRadioInline1" name="sexo" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline1">Hombre</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" [(ngModel)]="usuario.sexo" value="Mujer" id="customRadioInline2" name="sexo" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline2">Mujer</label>
+                    </div>    
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" [(ngModel)]="usuario.sexo" value="Otro" id="customRadioInline3" name="sexo" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline3">Otro</label>
+                    </div>
+            </div>
+
+            <button [disabled]="dataForm.valid" type="submit" class="btn btn-primary center-block mt-2">Ingresar</button>
+            <button type="button" (click)="dafaultData(dataForm)" class="btn btn-success center-block mt-2 ml-3">Rellenator</button>
         </form>
 
-        <!--p class="mt-4">
-            {{ outputData | json }}
-        </p-->
+        <pre class="mt-4">
+            {{ usuario | json }}
+        </pre>
 
     </div>
 </div>
