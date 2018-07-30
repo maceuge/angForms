@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <h3>Lista de Usuarios <span class="small text-danger"></span></h3>
+        <hr>
+
+        <table class="table">
+            <thead class="text-light bg-primary">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Pais</th>
+                    <th scope="col">Sexo</th>
+                    <th scope="col">Pass</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <th scope="row">{{ user.nombre }}</th>
+                    <td>{{ user.apellido }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.pais }}</td>
+                    <td>{{ user.sexo }}</td>
+                    <td>{{ user.pass }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

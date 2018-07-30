@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Usuario } from '../../model/usuario';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'app-template-form',
@@ -14,13 +16,14 @@ export class TemplateFormComponent implements OnInit {
   
   outputData: any = {};
 
-  usuario: any = {
+  usuario: Usuario = {
     nombre: '',
     apellido: '',
     email: '',
     pass: '',
-    pais: 'USR',
-    sexo: 'Hombre'
+    pais: '',
+    sexo: '',
+    check: false
   };
 
   paises = [
@@ -38,16 +41,16 @@ export class TemplateFormComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private userService: UserDataService ) { }
 
   ngOnInit() {
   }
 
   guardarForm (getDataForm: NgForm) {
     console.log('Formulario General: ', getDataForm);
+    this.userService.addUser(this.usuario);
     //console.log('Formulario Valores: ', getDataForm.value);
     //console.log('Datos del Usuario: ', this.usuario);
-   // this.outputData = getDataForm.value;
   }
 
   dafaultData (dataForm: NgForm) {

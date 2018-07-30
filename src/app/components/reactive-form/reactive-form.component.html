@@ -3,6 +3,92 @@
         <h3>Reactive Form</h3>
         <hr>
 
-        <p>Aqui va el formulario</p>
+        <form novalidate autocomplete="off">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <!-- <label for="name">Nombre</label> -->
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                    <!-- <div class="invalid-feedback" *ngIf="name?.errors?.required && name.touched">
+                        Este campo es Requerido
+                    </div>
+                    <div class="invalid-feedback" *ngIf="name?.errors?.minlength && name.touched">
+                        El campo debe tener al menos 3 caracteres
+                    </div>
+                    <div class="valid-feedback" *ngIf="!name?.errors && name.touched">
+                        Campo Validado
+                    </div> -->
+                </div>
+                <div class="form-group col-md-6">
+                    <!-- <label for="surname">Apellido</label> -->
+                    <input type="text" class="form-control" name="apellido" placeholder="Apellido" minlength="5" required>
+
+                    <!-- <div class="invalid-feedback" *ngIf="surname?.errors?.required && surname.touched">
+                        Este Campo es Requerido
+                    </div>
+                    <div class="invalid-feedback" *ngIf="surname?.errors?.minlength && surname.touched">
+                        El Campo debe tener al menos 5 caracteres
+                    </div>
+                    <div class="valid-feedback" *ngIf="!surname?.errors && surname.touched">
+                        Campo Validado
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- <label for="inputEmail4">Email</label> -->
+                <input type="email" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+
+                <!-- <div class="invalid-feedback" *ngIf="email?.errors?.required && email.touched">
+                    Este Campo es Requerido
+                </div>
+                <div class="invalid-feedback" *ngIf="email?.errors?.pattern && email.touched">
+                    El email es invalido
+                </div>
+                <div class="valid-feedback" *ngIf="!email?.errors && email.touched">
+                    Campo Validado
+                </div> -->
+            </div>
+            <div class="form-group">
+                <!-- <label for="inputPassword4">Contraseña</label> -->
+                <input type="password" class="form-control" name="pass" placeholder="Password">
+            </div>
+
+            <div class="form-group">
+                <!-- <label for="">Pais</label> -->
+                <!-- <select class="custom-select" [(ngModel)]="usuario.pais" name="pais">
+                    <option selected>Elige un Pais</option>
+                    <option *ngFor="let pais of paises" [value]="pais.siglas"> {{ pais.nombre }} </option>
+                </select> -->
+            </div>
+
+            <!-- <div class="form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" [(ngModel)]="usuario.sexo" value="Hombre" id="customRadioInline1" name="sexo" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline1">Hombre</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" [(ngModel)]="usuario.sexo" value="Mujer" id="customRadioInline2" name="sexo" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline2">Mujer</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" [(ngModel)]="usuario.sexo" value="Otro" id="customRadioInline3" name="sexo" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline3">Otro</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="check" [(ngModel)]="usuario.check" class="custom-control-input" id="customCheck1" required>
+                    <label class="custom-control-label" for="customCheck1">Acepto terminos y condiciones</label>
+                </div>
+            </div> -->
+
+            <button type="submit" class="btn btn-primary center-block mt-2">Ingresar</button>
+            <!-- <button type="button" (click)="dafaultData(dataForm)" class="btn btn-success center-block mt-2 ml-3">Rellenator</button> -->
+        </form>
+
+        <pre class="mt-4">
+            <!-- {{ usuario | json }} -->
+        </pre>
     </div>
 </div>
