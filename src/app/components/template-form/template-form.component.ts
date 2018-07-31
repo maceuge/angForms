@@ -51,6 +51,7 @@ export class TemplateFormComponent implements OnInit {
     this.userService.addUser(this.usuario);
     //console.log('Formulario Valores: ', getDataForm.value);
     //console.log('Datos del Usuario: ', this.usuario);
+    getDataForm.reset();
   }
 
   dafaultData (dataForm: NgForm) {

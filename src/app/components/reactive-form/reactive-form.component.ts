@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,15 +15,26 @@ export class ReactiveFormComponent implements OnInit {
   constructor() {
 
     this.forma = new FormGroup({
-      'nombre': new FormControl('', [Validators.required, Validators.minLength(5)]),
-      'apellido': new FormControl('', Validators.required),
+      'nombrecompleto': new FormGroup({
+        'nombre': new FormControl('', [Validators.required, Validators.minLength(5)]),
+        'apellido': new FormControl('', Validators.required),
+      }),
       'email': new FormControl('', [ Validators.required, Validators.pattern(this.pattern) ]),
       'pass': new FormControl(''),
+      'pasatiempo': new FormArray([
+          new FormControl('Correr', Validators.required)
+      ])
     });
 
    }
 
   ngOnInit() {
+  }
+
+  agregarCampo () {
+    (<FormArray>this.forma.controls['pasatiempo']).push(
+      new FormControl('Cine')
+    );
   }
 
   guardarCambios () {

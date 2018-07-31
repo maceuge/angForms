@@ -59,7 +59,7 @@
             <div class="form-group">
                 <!-- <label for="">Pais</label> -->
                 <select class="custom-select" [(ngModel)]="usuario.pais" name="pais">
-                    <option selected>Elige un Pais</option>
+                    <option selected disabled>Elige un Pais</option>
                     <option *ngFor="let pais of paises" [value]="pais.siglas"> {{ pais.nombre }} </option>
                 </select>
             </div>
@@ -91,6 +91,7 @@
             <!-- <button type="button" (click)="dafaultData(dataForm)" class="btn btn-success center-block mt-2 ml-3">Rellenator</button> -->
         </form>
 
+        <hr>
         <pre class="mt-4">
             {{ usuario | json }}
         </pre>
