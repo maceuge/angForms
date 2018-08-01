@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Observable } from '../../../../node_modules/rxjs';
 
 
 @Component({
@@ -21,16 +22,49 @@ export class ReactiveFormComponent implements OnInit {
         'apellido': new FormControl('', [Validators.required, Validators.maxLength(10), this.noFreakSurnames]),
       }),
       'email': new FormControl('', [ Validators.required, Validators.email ]),
-      'pass': new FormControl(''),
+      'usuario': new FormControl('', Validators.required, this.checkUser),
+      'pass1': new FormControl('', Validators.required),
+      'pass2': new FormControl(''),
       'pasatiempos': new FormArray([
           new FormControl('', Validators.required)
       ])
     });
 
+    this.forma.controls['pass2'].setValidators([
+      Validators.required,
+      this.samePass.bind(this.forma)
+    ]);
+
    }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  checkUser (control: FormControl): Promise<any>|Observable<any> {
+
+    let promesa = new Promise(
+      (resolve, reject) => {
+        setTimeout(() => {
+            if (control.value === 'maceuge') {
+               resolve({ existe: true });
+            } else {
+               resolve( null );
+            }            
+          }, 3000);
+      }
+    );
+
+    return promesa;
   }
+
+  samePass (control: FormControl): { [s:string]:boolean } {
+    let forma: any = this;
+    if (control.value !== forma.controls['pass1'].value) {
+      return {
+        nosamepass: true
+      };
+    }
+    return null;
+ }
 
   noFreakSurnames (control: FormControl): { [s:string]:boolean } {
      if (control.value === 'Muñoz') {
@@ -54,6 +88,10 @@ export class ReactiveFormComponent implements OnInit {
   guardarCambios () {
     console.log(this.forma.value);
     console.log('FormGroup', this.forma);
+    //this.forma.reset();
+  }
+
+  resetForm() {
     this.forma.reset();
   }
 
