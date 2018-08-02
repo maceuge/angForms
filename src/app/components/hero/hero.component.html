@@ -1,0 +1,27 @@
+<div class="row justify-content-center">
+  <div class="col-md-10">
+      <h3 class="animated fadeIn">Hero <span class="small text-danger"></span></h3>
+      <hr>
+
+      <form (ngSubmit)="guardar()" #form="ngForm" class="animated fadeInRight" novalidate autocomplete="off">
+        <div class="form-group">
+          <!-- <label for="name">Nombre</label> -->
+          <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <!-- <label for="casa">Casa</label> -->
+              <select class="custom-select" name="casa">
+                  <option selected disabled>Elige una casa</option>
+                  <option value="Marvel">Marvel</option>
+                  <option value="DC">DC</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <!-- <label for="name">Comentarios</label> -->
+            <textarea type="text" class="form-control" name="coment" placeholder="Comentarios"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+  </div>
+</div>
