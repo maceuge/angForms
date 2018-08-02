@@ -13,6 +13,7 @@ import { HeroComponent } from './components/hero/hero.component';
 import { HeroslistComponent } from './components/heroslist/heroslist.component';
 import { UserDataService } from './services/user-data.service';
 import { HeroService } from './services/hero.service';
+import { HttpModule } from '../../node_modules/@angular/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HeroService } from './services/hero.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [
     UserDataService,

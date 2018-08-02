@@ -10,7 +10,7 @@ const routes: Routes = [
     { path: 'template', component: TemplateFormComponent },
     { path: 'reactive', component: ReactiveFormComponent },
     { path: 'users', component: UserListComponent},
-    { path: 'hero', component: HeroComponent},
+    { path: 'hero/:id', component: HeroComponent},
     { path: 'herolist', component: HeroslistComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'template' },
 ];
