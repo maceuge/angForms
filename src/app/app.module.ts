@@ -14,6 +14,7 @@ import { HeroslistComponent } from './components/heroslist/heroslist.component';
 import { UserDataService } from './services/user-data.service';
 import { HeroService } from './services/hero.service';
 import { HttpModule } from '../../node_modules/@angular/http';
+import { HeroListPipe } from './pipes/hero-list.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpModule } from '../../node_modules/@angular/http';
     ReactiveFormComponent,
     UserListComponent,
     HeroComponent,
-    HeroslistComponent
+    HeroslistComponent,
+    HeroListPipe
   ],
   imports: [
     BrowserModule,

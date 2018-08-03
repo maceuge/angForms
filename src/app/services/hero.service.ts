@@ -52,7 +52,15 @@ export class HeroService {
         return data.json();
       })
     );
+  }
 
+  eliminarHero (key$: string) {
+    let url = `${this.heroUrl}/${key$}.json`;
+    return this.http.delete(url).pipe(
+         map ( data => {
+           return data.json();
+         })
+    );
   }
 
 }

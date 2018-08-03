@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../../services/hero.service';
-import { Hero } from '../../interface/hero.interface';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-heroslist',
@@ -9,16 +10,43 @@ import { Hero } from '../../interface/hero.interface';
 })
 export class HeroslistComponent implements OnInit {
 
-  hero: Hero;
+  heros: any[] = [];
+  loading = true;
 
-  constructor(private heroService: HeroService) { 
-    this.heroService.obtenerListaHeros()
-                .subscribe( data => {
-                 // console.log(data);
-                });
+  constructor(private heroService: HeroService,
+              private route: Router) {
+      this.cargarHeros();
   }
 
   ngOnInit() {
+  }
+
+  cargarHeros () {
+    this.heroService.obtenerListaHeros()
+        .subscribe( heroLista => {
+            //console.log(heroLista); 
+            setTimeout( () => {
+              this.heros = heroLista;
+              this.loading = false;
+            }, 4000);
+        });
+  }
+
+  borrar(key: string) {
+    this.heroService.eliminarHero(key)
+          .subscribe( data => {
+          
+            if (data) {
+              console.error(data);
+            } else {
+              delete this.heros[key]; 
+            }
+      }); 
+  }
+
+  actualizar (key: string) {
+    //console.log(key);
+    this.route.navigate(['/hero', key]);
   }
 
 }

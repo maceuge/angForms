@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <h3 class="animated fadeIn">Hero <span class="small text-danger"></span></h3>
+        <h3 class="animated fadeIn">Hero <span class="small text-danger">{{ hero.nombre }}</span></h3>
         <hr>
 
         <form (ngSubmit)="guardar()" #form="ngForm" novalidate autocomplete="off">

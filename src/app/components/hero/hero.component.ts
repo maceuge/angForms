@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeroComponent implements OnInit {
 
-  private hero: Hero = {
+  hero: Hero = {
     nombre: '',
     casa: 'Marvel',
     bio: ''
@@ -18,6 +18,8 @@ export class HeroComponent implements OnInit {
 
   nuevo = false;
   id: string;
+
+  heros: Hero[] = [];
 
   constructor( private heroService: HeroService,
                private router: Router,
@@ -32,6 +34,7 @@ export class HeroComponent implements OnInit {
              });
       }
     });
+    
 }
 
   ngOnInit() {}
@@ -42,14 +45,15 @@ export class HeroComponent implements OnInit {
     if (this.id === 'nuevo') {
       this.heroService.guardarHero(this.hero)
                   .subscribe( data => {
-                    this.router.navigate(['/hero', data.name]);
+                    console.log(data);
+                    //this.router.navigate(['/hero', data.name]);
                   }, error => console.error(error)
                 );
       
     } else {
       this.heroService.actualizarHero(this.hero, this.id)
                   .subscribe( data => {
-                    console.log(data);
+                    //console.log(data);
                   }, error => console.error(error)
                 );
     }
